@@ -5,7 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ObjectResponseDto {
-    private Long id;
+public class PeopleResponseDto {
+    private String documentNumber;
     private String name;
+    private String email;
 }

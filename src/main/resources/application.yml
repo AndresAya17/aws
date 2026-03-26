@@ -3,13 +3,21 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/powerup
-    username: root
-    password: 1234
+    # Cambiamos mysql por postgresql y localhost por el Endpoint de AWS
+    url: jdbc:postgresql://db-persona.c7qyqsi4il5y.us-east-2.rds.amazonaws.com:5432/postgres?currentSchema=ms_perfiles_db
+    username: anke
+    password: "Ankelino17."
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
-appDescription: "Pragma Powerup"
+    properties:
+      hibernate:
+        format_sql: true
+        # Esto ayuda a que Hibernate use el dialecto correcto de Postgres
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+appDescription: "Pragma Reto Aws"
 appVersion: "1.0.0"

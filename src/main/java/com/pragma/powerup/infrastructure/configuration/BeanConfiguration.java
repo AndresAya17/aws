@@ -1,11 +1,11 @@
 package com.pragma.powerup.infrastructure.configuration;
 
-import com.pragma.powerup.domain.api.IObjectServicePort;
-import com.pragma.powerup.domain.spi.IObjectPersistencePort;
-import com.pragma.powerup.domain.usecase.ObjectUseCase;
-import com.pragma.powerup.infrastructure.out.jpa.adapter.ObjectJpaAdapter;
-import com.pragma.powerup.infrastructure.out.jpa.mapper.IObjectEntityMapper;
-import com.pragma.powerup.infrastructure.out.jpa.repository.IObjectRepository;
+import com.pragma.powerup.domain.api.IPeopleServicePort;
+import com.pragma.powerup.domain.spi.IPeoplePersistencePort;
+import com.pragma.powerup.domain.usecase.PeopleUseCase;
+import com.pragma.powerup.infrastructure.out.jpa.adapter.PeopleJpaAdapter;
+import com.pragma.powerup.infrastructure.out.jpa.mapper.IPeopleEntityMapper;
+import com.pragma.powerup.infrastructure.out.jpa.repository.IPeopleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,16 +13,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @RequiredArgsConstructor
 public class BeanConfiguration {
-    private final IObjectRepository objectRepository;
-    private final IObjectEntityMapper objectEntityMapper;
+    private final IPeopleRepository peopleRepository;
+    private final IPeopleEntityMapper peopleEntityMapper;
 
     @Bean
-    public IObjectPersistencePort objectPersistencePort() {
-        return new ObjectJpaAdapter(objectRepository, objectEntityMapper);
+    public IPeoplePersistencePort peoplePersistencePort(){
+        return new PeopleJpaAdapter(peopleRepository,peopleEntityMapper);
     }
 
     @Bean
-    public IObjectServicePort objectServicePort() {
-        return new ObjectUseCase(objectPersistencePort());
+    public IPeopleServicePort peopleServicePort(){
+        return new PeopleUseCase(peoplePersistencePort());
     }
 }
